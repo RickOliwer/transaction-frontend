@@ -1,36 +1,14 @@
-import { Button } from "./components/ui/button";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "./components/ui/select";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Transactions from "./components/transactions";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
-      <div>
-        <Button>Click me</Button>
-
-        <select name="" id="">
-          <option value="">item 1</option>
-          <option value="">item 2</option>
-          <option value="">item 3</option>
-          <option value="">item 4</option>
-        </select>
-
-        <Select>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Theme" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="light">Light</SelectItem>
-            <SelectItem value="dark">Dark</SelectItem>
-            <SelectItem value="system">System</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <Transactions />
+      </QueryClientProvider>
     </>
   );
 }
