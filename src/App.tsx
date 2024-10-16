@@ -1,9 +1,10 @@
 import { fetchTransactions } from "@/api/transactions";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { Button } from "./components/ui/button";
+
 import TransactionList from "./components/transaction-list";
 import CardWrapper from "./components/card-wrapper";
+import PaginationController from "./components/pagination-controller";
 
 function App() {
   const [page, setPage] = useState(0);
@@ -27,25 +28,13 @@ function App() {
         ) : (
           <TransactionList transactions={data.transactions} />
         )}
-        <span>Current Page: {page + 1}</span>
-        <Button
-          onClick={() => setPage((old) => Math.max(old - 1, 0))}
-          disabled={page === 0}
-        >
-          Previous Page
-        </Button>
-        <Button
-          onClick={() => {
-            if (!isPlaceholderData && data?.hasMore) {
-              setPage((old) => old + 1);
-            }
-          }}
-          // Disable the Next Page button until we know a next page is available
-          disabled={isPlaceholderData || !data?.hasMore}
-        >
-          Next Page
-        </Button>
-        {isFetching ? <span> Loading...</span> : null}
+
+        <PaginationController
+          setPage={setPage}
+          page={page}
+          hasMore={data?.hasMore}
+          isPlaceholderData={isPlaceholderData}
+        />
       </CardWrapper>
     </div>
   );
