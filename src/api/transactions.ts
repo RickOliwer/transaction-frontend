@@ -1,4 +1,4 @@
-type Item = {
+export type TransactionItem = {
   date: string;
   recipientId: number;
   description: string;
@@ -6,7 +6,7 @@ type Item = {
 };
 
 interface TransactionsRes {
-  data: Item[];
+  data: TransactionItem[];
   total: number;
 }
 
