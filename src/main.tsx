@@ -8,7 +8,7 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <main className="m-auto max-w-[1800px] px-10 py-20 ">
+      <main className="m-auto max-w-[1800px] px-4 lg:px-20 py-20 dark bg-background">
         <App />
       </main>
     </QueryClientProvider>

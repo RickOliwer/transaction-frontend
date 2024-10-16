@@ -1,12 +1,15 @@
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+
 const CardWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-      <h2>CardWrapper</h2>
+    <Card>
+      <CardHeader className="flex-row items-center justify-between">
+        <CardTitle>Kontohändelser</CardTitle>
 
-      {children}
-
-      <h2>hello wrapper</h2>
-    </div>
+        <div>Hello world</div>
+      </CardHeader>
+      <CardContent>{children}</CardContent>
+    </Card>
   );
 };
 
