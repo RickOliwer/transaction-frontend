@@ -8,16 +8,21 @@ type Item = {
 const LIMIT = 10;
 
 export async function fetchTransactions({
-  pageParam,
+  page,
+  start,
+  end,
 }: {
-  pageParam: number;
+  page: number;
+  start?: string;
+  end?: string;
 }): Promise<{
-  data: Item[];
-  currentPage: number;
-  nextPage: number | null;
+  transactions: Item[];
+  total: number;
+  hasMore: boolean;
+  totalPages: number;
 }> {
   const res = await fetch(
-    `http://localhost:8080/api/transactions?page=${pageParam}&size=${LIMIT}`,
+    `http://localhost:8080/api/transactions?page=${page}&size=${LIMIT}`,
     {
       method: "GET",
       headers: {
@@ -26,17 +31,19 @@ export async function fetchTransactions({
     }
   );
 
-  console.log("my res ==>", res);
-
   const data = await res.json();
 
-  const items: any[] = [];
+  const totalPages = Math.ceil(data?.total / LIMIT);
+
+  const hasMore = page < totalPages - 1;
+
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
-        data,
-        currentPage: pageParam,
-        nextPage: pageParam + LIMIT < items.length ? pageParam + LIMIT : null,
+        transactions: data?.data,
+        total: data?.total,
+        hasMore: hasMore,
+        totalPages: totalPages,
       });
     }, 1000);
   });
