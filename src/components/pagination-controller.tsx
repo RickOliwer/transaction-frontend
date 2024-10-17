@@ -10,7 +10,7 @@ import {
 type PropsType = {
   setPage: (page: number) => void;
   page: number;
-  hasMore: boolean;
+  hasMore: boolean | undefined;
   isPlaceholderData: boolean;
 };
 
