@@ -29,18 +29,9 @@ const PaginationController = (props: PropsType) => {
             }
           />
         </PaginationItem>
-        {page >= 1 && (
-          <PaginationItem>
-            <PaginationLink>
-              {page === 1 ? 1 : page === 2 ? 2 : page}
-            </PaginationLink>
-          </PaginationItem>
-        )}
+
         <PaginationItem>
           <PaginationLink>{page != undefined ? page + 1 : ""}</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink>{page != undefined ? page + 2 : ""}</PaginationLink>
         </PaginationItem>
 
         <PaginationItem>
