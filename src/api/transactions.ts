@@ -21,7 +21,7 @@ export async function fetchTransactions({
   end?: string;
   size?: number;
 }): Promise<{
-  transactions: Item[];
+  transactions: TransactionItem[];
   total: number;
   hasMore: boolean;
   totalPages: number;
