@@ -1,26 +1,14 @@
 import { fetchTransactions } from "@/api/transactions";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import TransactionList from "./components/transactions/transaction-list";
 import CardWrapper from "./components/transactions/card-wrapper";
 import PaginationController from "./components/transactions/pagination-controller";
-import { DateRange } from "react-day-picker";
 import { DatePicker } from "./components/transactions/date-picker";
-import { formatDate } from "./lib/utils/date";
+import { usePaginationFilter } from "./hooks/usePaginationFilter";
 
 function App() {
-  const [page, setPage] = useState(0);
-
-  const [date, setDate] = useState<DateRange | undefined>(undefined);
-
-  const startDate = formatDate(date?.from);
-  const endDate = formatDate(date?.to);
-
-  useEffect(() => {
-    if (startDate && endDate) {
-      setPage(0);
-    }
-  }, [startDate, endDate]);
+  const { page, setPage, date, setDate, startDate, endDate } =
+    usePaginationFilter();
 
   const { isPending, isError, error, data, isFetching, isPlaceholderData } =
     useQuery({

@@ -1,3 +1,5 @@
+import { API_URL } from "@/config";
+
 export type TransactionItem = {
   date: string;
   recipientId: number;
@@ -36,15 +38,12 @@ export async function fetchTransactions({
     if (start) params.append("start", start);
     if (end) params.append("end", end);
 
-    const res = await fetch(
-      `http://localhost:8080/api/transactions?${params.toString()}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const res = await fetch(`${API_URL}transactions?${params.toString()}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (!res.ok) {
       throw new Error(
