@@ -16,13 +16,16 @@ const TransactionList = ({
 }) => {
   return (
     <Table>
-      <TableCaption>En lista över transaktioner.</TableCaption>
+      <TableCaption>A list of transactions.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="min-w-[182px] w-[222px]">Datum</TableHead>
-          <TableHead className="min-w-[182px] w-[222px]">Kontotext</TableHead>
-          <TableHead>Insättning</TableHead>
-          <TableHead className="text-right">Uttag</TableHead>
+          <TableHead className="min-w-[182px] w-[222px]">Date</TableHead>
+          <TableHead className="min-w-[182px] w-[222px]">Recipient</TableHead>
+          <TableHead className="min-w-[182px] w-[222px]">
+            Account text
+          </TableHead>
+          <TableHead>Deposit</TableHead>
+          <TableHead className="text-right">Withdrawal</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -37,6 +40,9 @@ const TransactionList = ({
           return (
             <TableRow key={index}>
               <TableCell className="font-medium">{transaction.date}</TableCell>
+              <TableCell className="font-medium">
+                {transaction.category}
+              </TableCell>
               <TableCell>{transaction.description}</TableCell>
               <TableCell className="text-green-600">
                 {amount > 0 ? formatAmount : ""}

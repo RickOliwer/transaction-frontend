@@ -3,6 +3,7 @@ export type TransactionItem = {
   recipientId: number;
   description: string;
   amount: number;
+  category: string;
 };
 
 interface TransactionsRes {

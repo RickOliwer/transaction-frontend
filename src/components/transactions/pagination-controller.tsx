@@ -5,7 +5,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "./ui/pagination";
+} from "../ui/pagination";
 
 type PropsType = {
   setPage: (page: number) => void;
@@ -17,7 +17,7 @@ type PropsType = {
 const PaginationController = (props: PropsType) => {
   const { setPage, page, hasMore, isPlaceholderData } = props;
   return (
-    <Pagination>
+    <Pagination className="py-4">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious

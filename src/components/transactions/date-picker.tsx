@@ -1,6 +1,3 @@
-import { format } from "date-fns";
-
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -9,8 +6,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { CalendarIcon } from "lucide-react";
+import { DateRange } from "react-day-picker";
+import { cn } from "@/lib/utils/cn";
+import { formatDate } from "@/lib/utils/date";
 
-export function DatePicker({ date, setDate }: any) {
+export function DatePicker({
+  date,
+  setDate,
+}: {
+  date?: DateRange | undefined;
+  setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
+}) {
   return (
     <div className={cn("grid gap-2")}>
       <Popover>
@@ -27,11 +33,10 @@ export function DatePicker({ date, setDate }: any) {
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "dd-MM-yyyy")} -{" "}
-                  {format(date.to, "dd-MM-yyyy")}
+                  {formatDate(date.from)} - {formatDate(date.to)}
                 </>
               ) : (
-                format(date.from, "dd-MM-yyyy")
+                formatDate(date.from)
               )
             ) : (
               <span>Pick a date</span>
